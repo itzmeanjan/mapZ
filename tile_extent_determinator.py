@@ -47,7 +47,7 @@ def get_tile_extent(zoom_lvl, start_at, tile_width, tile_height, degree_along_x,
         next_start_point_along_x, start_at = generate_next_tile_along_y(
             start_at, x_extent, y_extent, x_index, y_index, tiles_with_index)
         x_index, y_index = generate_next_tiles_along_x(
-            next_start_point_along_x, x_extent, y_extent, x_index+1, y_index, tiles_with_index)
+            next_start_point_along_x, x_extent, y_extent, x_index+1, y_index, tiles_with_index)  # next tiles row and column id, returned from this function call
         if(start_at[1] <= -90):
             break
     # returns a dictionary holding row-column id as key and corresponding tile extent as value.

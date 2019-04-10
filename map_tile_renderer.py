@@ -15,7 +15,7 @@ except ImportError as e:
 
 def format_style_sheet(xml_doc, layer_name, element_name, element_attrs, element_text, target_xml):
     # formats template XML stylesheet during runtime.
-    et = parse_xml(xml_doc)  # parsing XML
+    et = parse_xml(xml_doc)  # parsing XML document
     target_elem = None
     for i in et.getroot().findall('Layer'):
         # iterates over all available layers in XML and selects one using layer_name attribute
