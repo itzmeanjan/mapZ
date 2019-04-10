@@ -37,9 +37,10 @@ def generate_next_tile_along_y(start_at, x_extent, y_extent, x_index, y_index, t
 
 
 def get_tile_extent(zoom_lvl, start_at, tile_width, tile_height, degree_along_x, degree_along_y):
+    # extent along X axis for each tile
     x_extent = units_per_pixel(degree_along_x, tile_width, zoom_lvl)*tile_width
     y_extent = units_per_pixel(
-        degree_along_y, tile_height, zoom_lvl)*tile_height
+        degree_along_y, tile_height, zoom_lvl)*tile_height  # extent along Y axis for each tile
     x_index, y_index = 0, 0
     tiles_with_index = {}
     while(1):
@@ -49,6 +50,7 @@ def get_tile_extent(zoom_lvl, start_at, tile_width, tile_height, degree_along_x,
             next_start_point_along_x, x_extent, y_extent, x_index+1, y_index, tiles_with_index)
         if(start_at[1] <= -90):
             break
+    # returns a dictionary holding row-column id as key and corresponding tile extent as value.
     return tiles_with_index
 
 
