@@ -56,3 +56,4 @@ def get_tile_extent(zoom_lvl, start_at, tile_width, tile_height, degree_along_x,
 
 if __name__ == '__main__':
     print('[!]This module is designed to be used as a backend handler :)')
+    exit(0)

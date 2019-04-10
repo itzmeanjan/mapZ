@@ -47,8 +47,9 @@ def tile_generator(x_val, y_val, zoom_lvl, degree_along_x, degree_along_y, num_o
         return False
     map_obj = Map(tile_width, tile_height,
                   '+proj=longlat +datum=WGS84 +no_defs ')
-    format_style_sheet(style_sheet, 'layer1', 'Parameter', [
-                       'name', 'extent'], 'something', 'tmp.xml')
+    if(not format_style_sheet(style_sheet, 'layer1', 'Parameter', [
+            'name', 'extent'], 'something', 'tmp.xml')):
+        return False
     load_map(map_obj, 'tmp.xml')  # loads XML style sheet
     map_obj.zoom_to_box(Box2d(*extent))
     render_to_file(map_obj, output_file, 'png')
