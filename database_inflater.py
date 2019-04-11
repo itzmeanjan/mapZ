@@ -15,8 +15,8 @@ def push_into_table(db_name, username, password, table_name, data):
         cursor = conn.cursor()  # cursors give us API for executing SQL queries
         count = 0
         for feature_id, feature_name, outline in data:
-            cursor.execute('insert into %s values ( %s, %s, st_geogfromtext(%s))',
-                           (table_name, feature_id, feature_name, outline))
+            cursor.execute("insert into {} values ( %s, %s, st_geogfromtext(%s))".format(table_name),
+                           (feature_id, feature_name, outline))
             count += 1
             if(not count % 100):
                 # after every 100 push, we just commit the changes made
@@ -26,9 +26,13 @@ def push_into_table(db_name, username, password, table_name, data):
         conn.close()  # connection to DB closed
     except psql.DatabaseError as e:
         print('[!]Error: {}'.format(str(e)))
+        cursor.close()
+        conn.close()
         return False
     except Exception as e:
         print('[!]Error: {}'.format(str(e)))
+        cursor.close()
+        conn.close()
         return False
     return True  # in case of success
 
@@ -38,19 +42,23 @@ def create_table(db_name, username, password, table_name):
     try:
         conn = psql.connect(database=db_name, user=username, password=password)
         cursor = conn.cursor()
-        cursor.execute('drop table if exists %s', (table_name,))
+        cursor.execute("drop table if exists {}".format(table_name))
         cursor.execute(
-            'create table %s (feature_id varchar primary key, feature_name varchar not null, outline geography)', (table_name, ))
-        cursor.execute('create index %s on %s using gist( outline )',
-                       ('{}_index'.format(table_name), table_name))
+            "create table {} (feature_id varchar primary key, feature_name varchar not null, outline geography)".format(table_name))
+        cursor.execute("create index {} on {} using gist( outline )".format(
+            '{}_index'.format(table_name), table_name))
         conn.commit()  # committing changes made to DB
         cursor.close()
         conn.close()  # closed connection to DB
     except psql.DatabaseError as e:
         print('[!]Error: {}'.format(str(e)))
+        cursor.close()
+        conn.close()
         return False
     except Exception as e:
         print('[!]Error: {}'.format(str(e)))
+        cursor.close()
+        conn.close()
         return False
     return True  # in case of success
 
@@ -64,6 +72,8 @@ def inflate_into_db(db_name, username, password, data_set):
                     '[+]Pushing into table -- `{}`'.format('world_features_level_{}'.format(key)))
                 push_into_table(db_name, username, password,
                                 'world_features_level_{}'.format(key), value)
+            else:
+                return False
     except Exception as e:
         print('[!]Error: {}'.format(str(e)))
         return False

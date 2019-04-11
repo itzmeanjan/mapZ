@@ -12,6 +12,7 @@ except ImportError as e:
 def app(path='/path-to-file/gadm36_{}.shp', file_id=[0, 1, 2, 3, 4, 5]):
     # path, path to gadm shapefiles
     # gadm has 6 layers, shape files hold corresponding layer number too
+    print('[+]Now grab a cup of coffee, cause this gonna be a little longer ...\n')
     for i in file_id:
         print('[+]Working on `{}`'.format(path.format(i)))
         datasource = geo.Open(path.format(i))  # datasource opened
