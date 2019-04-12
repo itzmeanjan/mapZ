@@ -3,7 +3,7 @@ const express = require('express');
 const app = express(); // express app's instance gets created here
 const join = require('path').join;
 const exists = require('fs').exists; // only importing `exists` method
-let tile_path = '/home/anjan/Documents/my_programs/still_working/python_codes/mapZ/tiles/';
+let tile_path = '/path-to-tile/';
 app.get('/tile/:zoom/:row/:col.png', (req, res) => {
     // this is the path we're listening to
     // where zoom, request param, gives us zoom level for that tile requested
