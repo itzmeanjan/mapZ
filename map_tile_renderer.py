@@ -46,7 +46,7 @@ def tile_generator(zoom_lvl, tile_width, tile_height, style_sheet, target_storag
     for key, value in tiles.items():
         map_obj = Map(tile_width, tile_height,
                       '+proj=longlat +datum=WGS84 +no_defs ')
-        if(not format_style_sheet(style_sheet, ['layer1'], 'Parameter', [
+        if(not format_style_sheet(style_sheet, ['layer1', 'layer2', 'layer3'], 'Parameter', [
                 'name', 'extent'], '{}, {}, {}, {}'.format(*value), 'tmp.xml')):
             return False
         print(
