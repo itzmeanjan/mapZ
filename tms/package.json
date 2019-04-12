@@ -1,0 +1,32 @@
+{
+  "name": "tms",
+  "version": "1.0.0",
+  "description": "A simple tile map server implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itzmeanjan/mapZ.git"
+  },
+  "keywords": [
+    "geospatial",
+    "tms",
+    "tiles",
+    "map",
+    "express",
+    "nodejs",
+    "npm"
+  ],
+  "author": "Anjan Roy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itzmeanjan/mapZ/issues"
+  },
+  "homepage": "https://github.com/itzmeanjan/mapZ#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "0.0.1-security"
+  }
+}
