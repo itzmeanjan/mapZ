@@ -1,16 +1,16 @@
-// this is a simple tile map server implementation, built with Express, serves tiles indentified by combination of zoom_level, row_id and column_id
+// This is a simple tile map server implementation, built with Express, serves tiles indentified by combination of zoom_level, row_id and column_id
 const express = require('express');
 const app = express(); // express app's instance gets created here
-const join = require('path').join;
+const path = require('path');
 const exists = require('fs').exists; // only importing `exists` method
-let tile_path = '/path-to-tile/';
+let tile_path = path.normalize(path.join(`${__dirname}`, '../tiles/'));
 app.get('/tile/:zoom/:row/:col.png', (req, res) => {
     // this is the path we're listening to
     // where zoom, request param, gives us zoom level for that tile requested
     // row, gives row number of tile to be served
     // col, gives column number of tile to be served
     console.log(`\t[+]Incoming request from --- ${req.ip}`);
-    var target_path = join(tile_path, `${req.params.zoom
+    var target_path = path.join(tile_path, `${req.params.zoom
         }_${req.params.row}_${req.params.col}.png`); // this is requested tile
     exists(target_path, (e) => {
         if (e) {
