@@ -1,0 +1,44 @@
+<Map background-color="aquamarine" srs="+proj=longlat +datum=WGS84 +no_defs ">
+    <Style name="style1">
+        <Rule>
+            <PolygonSymbolizer fill="#888888" />
+            <LineSymbolizer stroke="white" stroke-width=".1" />
+        </Rule>
+        <Rule>
+            <TextSymbolizer face-name="DejaVu Sans Book" halo-fill="greenyellow" halo-radius="3">
+                [feature_name]
+            </TextSymbolizer>
+        </Rule>
+    </Style>
+    <Layer name="layer1" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style1
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                @njan5m3dB
+            </Parameter>
+            <Parameter name="table">
+                (select feature_name, outline::geometry from world_features_level_0) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+</Map>
