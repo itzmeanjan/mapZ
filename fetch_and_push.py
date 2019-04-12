@@ -21,13 +21,20 @@ def app(path='/path-to-file/gadm36_{}.shp', file_id=[0, 1, 2, 3, 4, 5]):
         tmp = []
         for j in range(layer.GetFeatureCount()):
             feature = layer.GetFeature(j)  # gets feature by id
-            tmp.append([feature.items().get('GID_{}'.format(i), 'NA'),
-                        feature.items().get('NAME_{}'.format(i), 'NA'),
+            gid = 'NA'
+            name = 'NA'
+            # there might be some fields present in shapefile, which is None
+            if(feature.items().get('GID_{}'.format(i)) is not None):
+                # To handle so, I'm adding these two checks, otherwise those might be causing problem during database population
+                gid = feature.items().get('GID_{}'.format(i))
+            if(feature.items().get('NAME_{}'.format(i)) is not None):
+                name = feature.items().get('NAME_{}'.format(i))
+            tmp.append([gid, name,
                         feature.GetGeometryRef().ExportToWkt()])
             # holds data in temp variable
             # data format -- [feature_id, feature_name, outline]
         if(inflate_into_db('world_features', 'username', 'password', {i: tmp})):
-            # finally inflates into database
+            # finally inflate into database
             print('[+]Success')
     return
 
