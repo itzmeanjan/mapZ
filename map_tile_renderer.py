@@ -38,7 +38,7 @@ def format_style_sheet(xml_doc, layer_name, element_name, element_attrs, element
 
 
 def tile_generator(zoom_lvl, tile_width, tile_height, style_sheet, target_storage_path):
-    print('\t[+]Generating tiles in zoom level -- {}'.format(zoom_lvl))
+    print('\n\t[+]Generating tiles in zoom level -- {}\n'.format(zoom_lvl))
     tiles = get_tile_extent(zoom_lvl, (-180, +90), tile_width, tile_height,
                             360, 180)
     if(not tiles):
@@ -62,36 +62,39 @@ def tile_generator(zoom_lvl, tile_width, tile_height, style_sheet, target_storag
 
 def input_validator():
     # validates input, which was provided during invokation of function
-    max_zoom_lvl = argv[1]
+    init_zoom_lvl, max_zoom_lvl = argv[1:]
     try:
+        init_zoom_lvl = int(init_zoom_lvl)
         max_zoom_lvl = int(max_zoom_lvl)
     except ValueError as e:
         print('[!]Error : {}'.format(str(e)))
-        return None
-    if(max_zoom_lvl < 0 or max_zoom_lvl > 10):
-        print('[!]Max Zoom level value should be in range of 0 to 10')
-        return None
-    for i in range(max_zoom_lvl+1):
+        return ()
+    if((init_zoom_lvl < 0 or init_zoom_lvl > 10) or (max_zoom_lvl < 0 or max_zoom_lvl > 10)):
+        print('[!]Zoom level value should be in range of 0 to 10')
+        return ()
+    for i in range(init_zoom_lvl, max_zoom_lvl+1):
         if(not exists('map_tile_renderer_style_sheet_{}.xml'.format(i))):
             print('[!]Style Sheet not available for zoom-level -- {} !\n'.format(i))
-            return None
-    return max_zoom_lvl
+            return ()
+    return init_zoom_lvl, max_zoom_lvl
 
 
 def app(tile_width, tile_height):
-    if(len(argv) != 2):
+    if(len(argv) != 3):
+        # now it can generate only those tiles, which are specified using their zoom_level
         print(
-            '[+]Usage : ./{} max-zoom-level \n\t[*] max-zoom-level = 0 to 10\n'.format(argv[0]))
+            '[+]Usage : ./{} init-zoom-level max-zoom-level\n\t[*] init-zoom-level = 0 to 10\n\t[*] max-zoom-level = 0 to 10\n'.format(argv[0]))
         return
     # if command line input argument is not okay, it'll fail simply
-    max_zoom_lvl = input_validator()
-    if(not max_zoom_lvl):
+    try:
+        init_zoom_lvl, max_zoom_lvl = input_validator()
+    except ValueError:
         return
     target_storage_path = join(getcwd(), 'tiles')
     if(not exists(target_storage_path)):
         mkdir(target_storage_path)
-    print('[+]Generating all tiles with max zoom level {} ...'.format(max_zoom_lvl))
-    for i in range(max_zoom_lvl+1):
+    print('[+]Generating all tiles with starting zoom level {} & max zoom level {}\n'.format(init_zoom_lvl, max_zoom_lvl))
+    for i in range(init_zoom_lvl, max_zoom_lvl+1):
         if(not tile_generator(i, tile_width, tile_height, 'map_tile_renderer_style_sheet_{}.xml'.format(i), target_storage_path)):
             print('\t[!]Illegal Tile extent value !')
             return

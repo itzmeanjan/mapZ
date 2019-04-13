@@ -2,7 +2,7 @@
     <Style name="style1">
         <Rule>
             <PolygonSymbolizer fill="#888888" />
-            <LineSymbolizer stroke="white" stroke-width=".1" />
+            <LineSymbolizer stroke="white" stroke-width=".05" />
         </Rule>
     </Style>
     <Layer name="layer1" srs="+proj=longlat +datum=WGS84 +no_defs ">
