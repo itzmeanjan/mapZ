@@ -46,7 +46,7 @@ def tile_generator(zoom_lvl, tile_width, tile_height, style_sheet, target_storag
     for key, value in tiles.items():
         map_obj = Map(tile_width, tile_height,
                       '+proj=longlat +datum=WGS84 +no_defs ')
-        if(not format_style_sheet(style_sheet, ['layer1', 'layer2', 'layer3'], 'Parameter', [
+        if(not format_style_sheet(style_sheet, ['layer1', 'layer2', 'layer3', 'layer4', 'layer5', 'layer6'], 'Parameter', [
                 'name', 'extent'], '{}, {}, {}, {}'.format(*value), 'tmp.xml')):
             return False
         print(
@@ -54,7 +54,7 @@ def tile_generator(zoom_lvl, tile_width, tile_height, style_sheet, target_storag
         load_map(map_obj, 'tmp.xml')  # loads generated XML style sheet
         map_obj.zoom_to_box(Box2d(*value))
         render_to_file(map_obj, join(target_storage_path, '{}_{}_{}.png'.format(
-            zoom_lvl, *key.split(','))), 'png')
+            zoom_lvl, *key.split(','))), 'png256')
     # removes temporary XML file, which was generated from template XML
     unlink('tmp.xml')
     return True
@@ -105,7 +105,7 @@ def app(tile_width, tile_height):
 if __name__ == '__main__':
     run('clear')
     try:
-        app(256, 128)
+        app(256, 144)
     except KeyboardInterrupt:
         print('\n[!]Terminated')
     finally:

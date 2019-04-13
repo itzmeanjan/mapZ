@@ -1,0 +1,191 @@
+<Map background-color="aquamarine" srs="+proj=longlat +datum=WGS84 +no_defs ">
+    <Style name="style1">
+        <Rule>
+            <PolygonSymbolizer fill="#444444" />
+            <LineSymbolizer stroke="red" stroke-width="4" stroke-dasharray="6, 3" />
+        </Rule>
+    </Style>
+    <Style name="style2">
+        <Rule>
+            <LineSymbolizer stroke="white" stroke-width="3" stroke-dasharray="4, 2" />
+        </Rule>
+    </Style>
+    <Style name="style3">
+        <Rule>
+            <LineSymbolizer stroke="brown" stroke-width="2.5" stroke-dasharray="3, 2" />
+        </Rule>
+    </Style>
+    <Style name="style4">
+        <Rule>
+            <LineSymbolizer stroke="#F2F5A9" stroke-width="2" stroke-dasharray="2, 1" />
+        </Rule>
+    </Style>
+    <Style name="style5">
+        <Rule>
+            <LineSymbolizer stroke="#BCA9F5" stroke-width="2" stroke-dasharray="2, 1" />
+        </Rule>
+        <Rule>
+            <Filter>
+                not ([feature_name] = 'NA')
+            </Filter>
+            <TextSymbolizer face-name="DejaVu Sans Book" fill="white">
+                [feature_name]
+            </TextSymbolizer>
+        </Rule>
+    </Style>
+    <Layer name="layer1" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style1
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                password
+            </Parameter>
+            <Parameter name="table">
+                (select outline::geometry from world_features_level_0) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+    <Layer name="layer2" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style2
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                password
+            </Parameter>
+            <Parameter name="table">
+                (select outline::geometry from world_features_level_1) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+    <Layer name="layer3" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style3
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                password
+            </Parameter>
+            <Parameter name="table">
+                (select outline::geometry from world_features_level_2) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+    <Layer name="layer4" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style4
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                password
+            </Parameter>
+            <Parameter name="table">
+                (select outline::geometry from world_features_level_3) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+    <Layer name="layer5" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style5
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                password
+            </Parameter>
+            <Parameter name="table">
+                (select feature_name, outline::geometry from world_features_level_4) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+</Map>

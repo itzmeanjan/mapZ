@@ -1,18 +1,16 @@
 <Map background-color="aquamarine" srs="+proj=longlat +datum=WGS84 +no_defs ">
     <Style name="style1">
         <Rule>
-            <PolygonSymbolizer fill="#888888" />
-            <LineSymbolizer stroke="white" stroke-width=".1" />
+            <PolygonSymbolizer fill="#444444" />
+            <LineSymbolizer stroke="red" stroke-width=".1" stroke-dasharray="3, 2" />
         </Rule>
         <Rule>
-            <TextSymbolizer face-name="DejaVu Sans Book" halo-fill="greenyellow" halo-radius="2">
+            <Filter>
+                not ([feature_name] = 'NA')
+            </Filter>
+            <TextSymbolizer face-name="DejaVu Sans Book" fill="white">
                 [feature_name]
             </TextSymbolizer>
-        </Rule>
-    </Style>
-    <Style name="style2">
-        <Rule>
-            <LineSymbolizer stroke="white" stroke-width=".05" />
         </Rule>
     </Style>
     <Layer name="layer1" srs="+proj=longlat +datum=WGS84 +no_defs ">
@@ -30,41 +28,10 @@
                 postgres
             </Parameter>
             <Parameter name="password">
-                @njan5m3dB
+                password
             </Parameter>
             <Parameter name="table">
                 (select feature_name, outline::geometry from world_features_level_0) as place
-            </Parameter>
-            <Parameter name="geometry_field">
-                outline
-            </Parameter>
-            <Parameter name="srid">
-                4326
-            </Parameter>
-            <Parameter name="estimate_extent">
-                false
-            </Parameter>
-        </Datasource>
-    </Layer>
-    <Layer name="layer2" srs="+proj=longlat +datum=WGS84 +no_defs ">
-        <StyleName>
-            style2
-        </StyleName>
-        <Datasource>
-            <Parameter name="type">
-                postgis
-            </Parameter>
-            <Parameter name="dbname">
-                world_features
-            </Parameter>
-            <Parameter name="user">
-                postgres
-            </Parameter>
-            <Parameter name="password">
-                @njan5m3dB
-            </Parameter>
-            <Parameter name="table">
-                (select outline::geometry from world_features_level_1) as place
             </Parameter>
             <Parameter name="geometry_field">
                 outline

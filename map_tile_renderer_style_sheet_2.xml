@@ -1,8 +1,8 @@
 <Map background-color="aquamarine" srs="+proj=longlat +datum=WGS84 +no_defs ">
     <Style name="style1">
         <Rule>
-            <PolygonSymbolizer fill="#888888" />
-            <LineSymbolizer stroke="white" stroke-width=".05" />
+            <PolygonSymbolizer fill="#444444" />
+            <LineSymbolizer stroke="red" stroke-width=".05" />
         </Rule>
     </Style>
     <Layer name="layer1" srs="+proj=longlat +datum=WGS84 +no_defs ">
@@ -20,7 +20,7 @@
                 postgres
             </Parameter>
             <Parameter name="password">
-                @njan5m3dB
+                password
             </Parameter>
             <Parameter name="table">
                 (select outline::geometry from world_features_level_0) as place

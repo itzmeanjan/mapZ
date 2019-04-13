@@ -2,12 +2,17 @@
     <Style name="style1">
         <Rule>
             <PolygonSymbolizer fill="#444444" />
-            <LineSymbolizer stroke="red" stroke-width="1.5" stroke-dasharray="5, 3" />
+            <LineSymbolizer stroke="red" stroke-width="3" stroke-dasharray="5, 3" />
         </Rule>
     </Style>
     <Style name="style2">
         <Rule>
-            <LineSymbolizer stroke="white" stroke-width=".5" stroke-dasharray="3, 2" />
+            <LineSymbolizer stroke="white" stroke-width="2" stroke-dasharray="3, 2" />
+        </Rule>
+    </Style>
+    <Style name="style3">
+        <Rule>
+            <LineSymbolizer stroke="brown" stroke-width="1.5" stroke-dasharray="2, 1" />
         </Rule>
         <Rule>
             <Filter>
@@ -67,7 +72,38 @@
                 password
             </Parameter>
             <Parameter name="table">
-                (select feature_name, outline::geometry from world_features_level_1) as place
+                (select outline::geometry from world_features_level_1) as place
+            </Parameter>
+            <Parameter name="geometry_field">
+                outline
+            </Parameter>
+            <Parameter name="srid">
+                4326
+            </Parameter>
+            <Parameter name="estimate_extent">
+                false
+            </Parameter>
+        </Datasource>
+    </Layer>
+    <Layer name="layer3" srs="+proj=longlat +datum=WGS84 +no_defs ">
+        <StyleName>
+            style3
+        </StyleName>
+        <Datasource>
+            <Parameter name="type">
+                postgis
+            </Parameter>
+            <Parameter name="dbname">
+                world_features
+            </Parameter>
+            <Parameter name="user">
+                postgres
+            </Parameter>
+            <Parameter name="password">
+                password
+            </Parameter>
+            <Parameter name="table">
+                (select feature_name, outline::geometry from world_features_level_2) as place
             </Parameter>
             <Parameter name="geometry_field">
                 outline
