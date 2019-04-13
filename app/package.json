@@ -1,0 +1,31 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "A simple express app, implementing a mapping application features",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itzmeanjan/mapZ.git"
+  },
+  "keywords": [
+    "express",
+    "tile",
+    "map",
+    "server",
+    "nodejs",
+    "mapnik",
+    "leaflet"
+  ],
+  "author": "Anjan Roy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itzmeanjan/mapZ/issues"
+  },
+  "homepage": "https://github.com/itzmeanjan/mapZ#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
