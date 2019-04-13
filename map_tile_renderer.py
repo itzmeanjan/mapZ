@@ -69,7 +69,7 @@ def input_validator():
     except ValueError as e:
         print('[!]Error : {}'.format(str(e)))
         return ()
-    if((init_zoom_lvl < 0 or init_zoom_lvl > 10) or (max_zoom_lvl < 0 or max_zoom_lvl > 10)):
+    if((init_zoom_lvl < 0 or init_zoom_lvl > 18) or (max_zoom_lvl < 0 or max_zoom_lvl > 18)):
         print('[!]Zoom level value should be in range of 0 to 10')
         return ()
     for i in range(init_zoom_lvl, max_zoom_lvl+1):
@@ -105,7 +105,7 @@ def app(tile_width, tile_height):
 if __name__ == '__main__':
     run('clear')
     try:
-        app(256, 144)
+        app(256, 128)
     except KeyboardInterrupt:
         print('\n[!]Terminated')
     finally:
