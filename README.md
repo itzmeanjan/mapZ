@@ -3,11 +3,15 @@ A Geospatial Application, which I'm still working on
 
 # Documentation
 
-   - So, you interested in building a mapping application ?
-   - Yes
-   - Okay, I'm gonna take you through each and every step. All you need to do is to follow me.
-   - You ready ?
-   - Definitely
+   :eyes: : So, you interested in building a mapping application ?
+   
+   :eyes: : Yes
+   
+   :eyes: : Okay, I'm gonna take you through each and every step. All you need to do is to follow me.
+   
+   :eyes: : You ready ?
+   
+   :eyes: : Definitely
    
    
 ## Platform and Tools used
@@ -100,13 +104,13 @@ A Geospatial Application, which I'm still working on
    
 
 ## Database Population
-   That shapefile we downloaded, has 6 layers. So we'll be creating 6 different tables, where we're going to store that huge map data. 
+   :eyes: : That shapefile we downloaded, has 6 layers. So we'll be creating 6 different tables, where we're going to store that huge map data. 
    
-   :worried:
+   :eyes: : :worried:
    
-   Hey wait, we're going to automate that whole thing. Now happy ???
+   :eyes: : Hey wait, we're going to automate that whole thing. Now happy ???
    
-   :relaxed:
+   :eyes: : :relaxed:
    
    Alright so let's automate. And don't forget to grab a cup of :coffee:, cause this gonna be a bit longer.
    
@@ -194,6 +198,47 @@ A Geospatial Application, which I'm still working on
    
   
 ## Tile Generation
-   // TODO
+   This gonna be way more time consuming than previous one. I'm still working on it. I'll be back :sunglasses:.
+   
+   
+   
+## Tile Map Server
+   The *Tile Map Server*, built using [NodeJS](https://nodejs.org/en/) i.e. [ExpressJS](http://expressjs.com/) Framework resides [here](https://github.com/itzmeanjan/mapZ/tree/master/tms).
+   
+   Get into *tms* directory and run following command, which will download all dependencies, required for running this express app.
+   
+   ```shell
+      >> npm install
+   ```
+   
+   
+   This *Express* app will be working in local network. Make necessary changes, so that it can be discovered from Internet.
+   ```javascript
+      app.listen(8000, '0.0.0.0', () => {
+      // tms listens at 0.0.0.0:8000, so that it can be accessed via both localhost and devices present in local network
+      console.log('[+]Tile Map Server listening at - `0.0.0.0: 8000`\n');
+   });
+   ```
+   
+   Tile Map Server will be accepting *GET* request in  */tile/:zoom/:row/:col.png*   path, where *zoom* is Zoom Level value, *row* is Row ID( tile identifier along X-axis ) and *col* is Column ID( tile identifier along Y-axis ).
+   
+   ```javascript
+      app.get('/tile/:zoom/:row/:col.png', (req, res) => {
+      . 
+      . // lots of code
+      .
+      });
+   ```
+   
+   Ready to run Tile Map Server ?
+   
+   ```shell
+   >>  node index.js
+   ```
+   
+   As you can see on terminal its running. Just head to [this url](http://localhost:8000/tile/0/0/0.png), and you get to see a tile, which you built during that *very long* running tile generation procedure.
+
+
+
    
    
