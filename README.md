@@ -237,7 +237,10 @@ A Geospatial Application, which I'm still working on
    ```
    
    As you can see on terminal its running. Just head to [this url](http://localhost:8000/tile/0/0/0.png), and you get to see a tile, which you built during that *very long* running tile generation procedure.
-
+   
+   
+   ![Working Tile Map Server](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_1.png)
+   
 
 
    
