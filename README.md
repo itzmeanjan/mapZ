@@ -253,6 +253,8 @@ A Geospatial Application, which I'm still working on
       >> node index.js
    ```
    
+   ![mapping application server, running](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_2.png)
+   
    Back to client.
    
    ### Client Side
@@ -282,6 +284,10 @@ crossorigin=""></script>
         }
     </style>
    ```
+   ![map on client side 1](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_3.png)
+   ![map on client side 2](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_4.png)
+   ![map on client side 3](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_5.png)
+   
    Put this script with in *body* of html, which will display map on browser. Of course the heavy lifting is done by *leaflet*.
    
    ```javascript
@@ -305,6 +311,10 @@ crossorigin=""></script>
         });
    ```
    
+   ![map on client side 4](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_6.png)
+   ![map on client side 5](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_7.png)
+   ![map on client side 6](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_8.png)
+   
    Next we're going to add a *tileLayer*, used for displaying tiles. And the url for *tms* is *http://localhost:8000/tile/{z}/{x}/{y}.png*, where *z* denotes Zoom Level, *x* denotes tile-id along X-axis and *y* denotes tile-id along Y-axis.
    
    Well, the top-left most tile is identified as *0-0* tile. After that as you move towards right, *x* increases and moving downward increases *y* value.
@@ -314,9 +324,24 @@ crossorigin=""></script>
         }).addTo(map);
         
    ```
-   And we add tileLayer to map. and boom :wink: !!!
+   And we add tileLayer to map. and :boom: !!!
+   
+   ![map on client side 7](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_9.png)
+   ![map on client side 8](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_10.png)
+   ![map on client side 9](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_11.png)
+   ![map on client side 10](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_12.png)
+   ![map on client side 11](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_13.png)
+   ![map on client side 12](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_14.png)
    
    
+   Was it hard ???
+   
+   
+   :eyes: -- Facing some problems ?
+   
+   :eyes: -- Yes
+   
+   :eyes: -- Alright, find me [here](https://twitter.com/meanjanry)
    
    
 
