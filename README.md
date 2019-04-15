@@ -3,15 +3,14 @@ A Geospatial Application, which I'm still working on
 
 # Documentation
 
-   :eyes: : So, you interested in building a mapping application ?
+   :eyes: : So, you interested in building a mapping application, is it ?
    
    :eyes: : Yes
    
-   :eyes: : Okay, I'm gonna take you through each and every step. All you need to do is to follow me.
-   
-   :eyes: : You ready ?
+   :eyes: : Okay, I'm gonna take you through each and every step. All you need to do is to follow me. Ready ?
    
    :eyes: : Definitely
+   
    
    
 ## Platform and Tools used
@@ -240,6 +239,85 @@ A Geospatial Application, which I'm still working on
    
    
    ![Working Tile Map Server](https://github.com/itzmeanjan/mapZ/blob/master/screenshot_1.png)
+   
+ 
+## Mapping Application
+   Let's first talk about server side.
+   ### Server Side
+   We gonna write an [Express](http://expressjs.com/) App, which will be serving web pages for displaying maps, and for client, will simply reply on browser, which makes this whole venture a bit platform independent.
+   
+   Mapping application resides [here](https://github.com/itzmeanjan/mapZ/tree/master/app). As I assume, you've already successfully completed previous steps, simply get into *app* directory and run *app/index.js* for launching mapping application server.
+   
+   ```shell
+      >> cd app
+      >> node index.js
+   ```
+   
+   Back to client.
+   
+   ### Client Side
+   You might have already found that there's a [*static*](https://github.com/itzmeanjan/mapZ/tree/master/app/static) directory inside *app*, which holds a simple web page, [*index.html*](https://github.com/itzmeanjan/mapZ/blob/master/app/static/index.html), which will be served by *app/index.js*, ( express app ) and browser will be using it for displaying map with the help of a great JavaScript library [*leaflet*](https://leafletjs.com/).
+   
+   For using *leaflet* in our app, we're going to put following two tags in *head* tag of [*index.html*](https://github.com/itzmeanjan/mapZ/blob/master/app/static/index.html).
+   ```html
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+crossorigin=""></script>
+   ```
+   
+   For displaying a map we need a *div* element with *id* attribute set, in *body* of html. You need to specify *height* for this *div* element.
+   ```html
+      <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
+   ```
+   Put this script with in *body* of html, which will display map on browser. Of course the heavy lifting is done by *leaflet*.
+   
+   ```javascript
+   <script>
+        var map = L.map('map', {
+            maxZoom: 5,
+            minZoom: 0,
+        });
+        L.tileLayer('http://localhost:8000/tile/{z}/{x}/{y}.png', {
+            attribution: '&copy; 2019 Anjan Roy'
+        }).addTo(map);
+        map.setView([22, 83], 3);
+    </script>
+   ```
+   
+   You see, I've created a map with *maxZoom: 5* and *minZoom: 0*, which will be displayed with in a *div* element, identified by *map*, id attribute.
+   ```javascript
+      var map = L.map('map', {
+            maxZoom: 5,
+            minZoom: 0,
+        });
+   ```
+   
+   Next we're going to add a *tileLayer*, used for displaying tiles. And the url for *tms* is *http://localhost:8000/tile/{z}/{x}/{y}.png*, where *z* denotes Zoom Level, *x* denotes tile-id along X-axis and *y* denotes tile-id along Y-axis.
+   
+   Well, the top-left most tile is identified as *0-0* tile. After that as you move towards right, *x* increases and moving downward increases *y* value.
+   ```javascript
+      L.tileLayer('http://localhost:8000/tile/{z}/{x}/{y}.png', {
+            attribution: '&copy; 2019 Anjan Roy'
+        }).addTo(map);
+        
+   ```
+   And we add tileLayer to map. and boom :wink: !!!
+   
+   
+   
    
 
 
