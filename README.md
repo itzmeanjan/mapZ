@@ -1,3 +1,5 @@
+<p align="center"><img src="/logo/logotype-horizontal.png"></p>
+
 # mapZ
 A Geospatial Application, which I'm still working on.
 
@@ -348,7 +350,6 @@ crossorigin=""></script>
    
 
 ## Courtesy
-   Thanking [Tobaloidee](https://github.com/Tobaloidee) :heart: -ily for designing a logo for this project, which is available [here](https://user-images.githubusercontent.com/36028424/56153398-a06c1500-5fe8-11e9-9182-366f9b8bc4d4.png).
-
+   Thanking [Tobaloidee](https://github.com/Tobaloidee) :heart: -ily for designing a logo for this project.
    
    
